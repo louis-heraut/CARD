@@ -34,7 +34,7 @@ H3 = c("2070-01-01", "2099-12-31")
 
 ## INFO ______________________________________________________________
 ### English __________________________________________________________
-CARD$P.variable_en = paste0("delta{BFI}_Wal_", Horizon)
+CARD$P.variable_en = paste0("deltaBFI-Wal_", Horizon)
 CARD$P.unit_en = "without unit"
 CARD$P.name_en = paste0("Change of baseflow index between the ", Horizon_en, " horizon and historical period (Wallingford)")
 CARD$P.description_en = paste0("Ratio between mean inter-annual base flow and mean inter-annual flow")
@@ -43,7 +43,7 @@ CARD$P.method_en = paste0("1. no temporal aggregation - extraction of the base f
 CARD$P.topic_en = "Flow, Base Flow, Intensity"
 
 ### French ___________________________________________________________
-CARD$P.variable_fr = paste0("delta{BFI}_Wal_", Horizon)
+CARD$P.variable_fr = paste0("deltaBFI-Wal_", Horizon)
 CARD$P.unit_fr = "sans unité"
 CARD$P.name_fr = paste0("Changement de l'indice de débit de base entre l'horizon ", Horizon_fr, " et la période historique (Wallingford)")
 CARD$P.description_fr = paste0("Rapport entre débit de base moyen inter-annuel et débit moyen inter-annuel")
@@ -60,25 +60,25 @@ CARD$P.palette = NULL
 
 ## PROCESS ___________________________________________________________
 ### P1 _______________________________________________________________
-CARD$P1.funct = list(BF_Wal=BFS)
+CARD$P1.funct = list("BF-Wal"=BFS)
 CARD$P1.funct_args = list("Q", method="Wal")
 CARD$P1.time_step = "none"
 CARD$P1.keep = "all"
 CARD$P1.NAyear_lim = 10
 
 ### P2 _______________________________________________________________
-CARD$P2.funct = list("delta{BFI}_Wal_H1"=get_deltaX,
-                     "delta{BFI}_Wal_H2"=get_deltaX,
-                     "delta{BFI}_Wal_H3"=get_deltaX)
-CARD$P2.funct_args = list(list("BF_Wal", "date",
+CARD$P2.funct = list("deltaBFI-Wal_H1"=get_deltaX,
+                     "deltaBFI-Wal_H2"=get_deltaX,
+                     "deltaBFI-Wal_H3"=get_deltaX)
+CARD$P2.funct_args = list(list("BF-Wal", "date",
                                past=H0, futur=H1,
                                to_normalise=CARD$P.to_normalise,
                                Q_for_BFI="Q"),
-                          list("BF_Wal", "date",
+                          list("BF-Wal", "date",
                                past=H0, futur=H2,
                                to_normalise=CARD$P.to_normalise,
                                Q_for_BFI="Q"),
-                          list("BF_Wal", "date",
+                          list("BF-Wal", "date",
                                past=H0, futur=H3,
                                to_normalise=CARD$P.to_normalise,
                                Q_for_BFI="Q"))
